@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AgroDiagnose+</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #eef8ee;
+  text-align: center;
+  padding: 40px;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+}
+
+input[type="file"] {
+  margin: 20px 0;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌱 AgroDiagnose+</h1>
+    <p>Diagnose your crop disease in seconds. Just upload an image below.</p>
+
+    <form id="diagnoseForm" action="/diagnose" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" id="image" required />
+      <button type="submit">🔍 Diagnose</button>
+    </form>
+
+    <div id="premium-promo">
+      <p>💎 Want unlimited scans and expert advice? <a href="/subscribe">Upgrade to Premium</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("diagnoseForm").addEventListener("submit", () => {
+      alert("Uploading image... Please wait.");
+    });
+  </script>
+   
+<script>
+    function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const messages = document.getElementById('chatMessages');
+
+    let userText = input.value.trim();
+    if (userText === '') return;
+
+    // Display user message
+    let userMsg = document.createElement('div');
+    userMsg.textContent = 'You: ' + userText;
+    userMsg.style.fontWeight = 'bold';
+    messages.appendChild(userMsg);
+
+    // Simple rule-based AgroBot responses
+    let botReply = 'Sorry, I don\'t understand.';
+
+    if (userText.toLowerCase().includes('blight')) {
+        botReply = 'Blight is common in humid climates. Use fungicides and remove infected leaves.';
+    } else if (userText.toLowerCase().includes('watering')) {
+        botReply = 'Water crops early in the morning or late evening to minimize evaporation.';
+    } else if (userText.toLowerCase().includes('fertilizer')) {
+        botReply = 'Use organic compost or NPK fertilizers depending on your soil type.';
+    }
+
+    let botMsg = document.createElement('div');
+    botMsg.textContent = 'AgroBot: ' + botReply;
+    botMsg.style.color = 'green';
+    messages.appendChild(botMsg);
+
+    // Scroll chat to bottom
+    messages.scrollTop = messages.scrollHeight;
+
+    input.value = '';
+}
+
+</script>
+
+
+</body>
+
+
+</html>
+
+
